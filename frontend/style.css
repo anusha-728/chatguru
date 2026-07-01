@@ -1,0 +1,369 @@
+
+/* PAGE */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: #fff4e3;
+  color: #3a3028;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* -------------------------------------------------------
+   LEFT NOTES PANEL
+-------------------------------------------------------- */
+.left-area {
+  width: 30%;
+  background: #fff7e8;
+  padding: 24px;
+  border-right: 3px solid #e3c7a4;
+  display: flex;
+  flex-direction: column;
+}
+
+.left-area h2 {
+  font-size: 1.6rem;
+  color: #b86b00;
+  margin-bottom: 14px;
+}
+
+#notes-box {
+  flex: 1;
+  resize: none;
+  width: 100%;
+  padding: 16px;
+  font-size: 1.05rem;
+  border-radius: 14px;
+  border: 2px solid #e0b98e;
+  background: #ffffff;
+  outline: none;
+  color: #4b3a2e;
+  box-shadow: inset 0 1px 4px rgba(150, 90, 20, 0.08);
+}
+
+#notes-box:focus {
+  border-color: #d89539;
+}
+
+/* -------------------------------------------------------
+   RIGHT CHAT PANEL
+-------------------------------------------------------- */
+.right-area {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  background: #fffaf3;
+}
+
+/* HEADER */
+.chat-header {
+  padding: 20px;
+  border-bottom: 3px solid #e1c3a1;
+  background: linear-gradient(135deg, #ffb347, #ff944d);
+  color: white;
+  border-left: 3px solid #e1c3a1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.model-selector label {
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+
+#model {
+  margin-left: 10px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: #ffe9c6;
+  border: 2px solid #cc8a39;
+  color: #3a3028;
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------
+   CHAT BOX
+-------------------------------------------------------- */
+.chat-box {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #fff2d8;
+  border-top: 3px solid #edc89d;
+  border-bottom: 3px solid #edc89d;
+}
+
+/* -------------------------------------------------------
+   MESSAGE WRAPPER (for timestamp and status)
+-------------------------------------------------------- */
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.message-wrapper.user {
+  align-items: flex-end;
+}
+
+.message-wrapper.ai {
+  align-items: flex-start;
+}
+
+/* -------------------------------------------------------
+   SUPER CLEAR MESSAGE BUBBLES
+-------------------------------------------------------- */
+
+/* USER MESSAGE — Bright orange — Right */
+.user-message {
+  position: relative;
+  background: linear-gradient(135deg, #ff8f1f, #ffb347);
+  color: #ffffff;
+  max-width: 75%;
+  padding: 15px 20px;
+  border-radius: 18px 6px 18px 18px;
+  border: 1px solid rgba(255, 140, 50, 0.6);
+  box-shadow: 0 2px 8px rgba(255, 153, 45, 0.35);
+  word-wrap: break-word;
+  animation: popIn 0.22s ease-out;
+}
+
+/* "You" Label */
+.user-message::before {
+  content: "You";
+  position: absolute;
+  top: -20px;
+  right: 8px;
+  font-size: 0.75rem;
+  color: #cc6f17;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+/* BOT MESSAGE — Soft yellow — Left */
+.ai-message {
+  position: relative;
+  background: linear-gradient(135deg, #ffef9a, #ffe08c);
+  color: #3c2f24;
+  max-width: 75%;
+  padding: 15px 20px;
+  border-radius: 6px 18px 18px 18px;
+  border: 1px solid rgba(210, 180, 90, 0.6);
+  box-shadow: 0 2px 8px rgba(220, 170, 90, 0.25);
+  word-wrap: break-word;
+  animation: popIn 0.22s ease-out;
+}
+
+/* "AI" Label */
+.ai-message::before {
+  content: "AI";
+  position: absolute;
+  top: -20px;
+  left: 8px;
+  font-size: 0.75rem;
+  color: #9c7c25;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+/* -------------------------------------------------------
+   TYPING INDICATOR (Animated Dots)
+-------------------------------------------------------- */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #ffef9a, #ffe08c);
+  border-radius: 6px 18px 18px 18px;
+  max-width: 80px;
+  margin-left: 5px;
+  border: 1px solid rgba(210, 180, 90, 0.6);
+  box-shadow: 0 2px 8px rgba(220, 170, 90, 0.25);
+  animation: fadeIn 0.3s ease-in;
+}
+
+.typing-indicator span {
+  height: 10px;
+  width: 10px;
+  margin: 0 3px;
+  background-color: #b89b4a;
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------
+   MESSAGE STATUS (Sending, Sent, Delivered)
+-------------------------------------------------------- */
+.message-status {
+  font-size: 0.72rem;
+  color: #a67c42;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.message-status.sending {
+  color: #cc8a39;
+  opacity: 0.7;
+}
+
+.message-status.sent {
+  color: #9c7c25;
+}
+
+.message-status.error {
+  color: #d63031;
+}
+
+/* Checkmark icons for sent/delivered */
+.status-icon {
+  font-size: 0.85rem;
+}
+
+/* -------------------------------------------------------
+   TIMESTAMP
+-------------------------------------------------------- */
+.message-timestamp {
+  font-size: 0.7rem;
+  color: #9c7c42;
+  margin-top: 6px;
+  opacity: 0.75;
+}
+
+/* -------------------------------------------------------
+   ANIMATIONS
+-------------------------------------------------------- */
+
+/* Pop-in animation */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.88) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------
+   INPUT AREA
+-------------------------------------------------------- */
+.input-container {
+  display: flex;
+  padding: 16px;
+  background: #ffefd7;
+  border-top: 3px solid #e2c3a0;
+}
+
+#user-input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #d3a873;
+  outline: none;
+  background: #ffffff;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+#user-input:focus {
+  border-color: #c8853b;
+}
+
+#send-btn {
+  margin-left: 10px;
+  padding: 12px 28px;
+  background: #ff9b29;
+  border: 2px solid #c77723;
+  color: white;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+#send-btn:hover {
+  background: #e68920;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 137, 32, 0.4);
+}
+
+#send-btn:active {
+  transform: translateY(0);
+}
+
+#send-btn:disabled {
+  background: #d4a574;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* -------------------------------------------------------
+   RESPONSIVE DESIGN
+-------------------------------------------------------- */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .left-area, .right-area {
+    width: 100%;
+  }
+  
+  .user-message, .ai-message {
+    max-width: 85%;
+  }
+}

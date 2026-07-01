@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ಶೋಧನ ಚಾಲಕ ತಂತ್ರಾಂಶ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    
+    <!-- LEFT NOTES AREA -->
+    <div class="left-area">
+      <h2>Notes</h2>
+      <textarea id="notes-box" placeholder="Write your notes here..."></textarea>
+    </div>
+
+    <!-- RIGHT CHAT AREA -->
+    <div class="right-area">
+
+      <div class="chat-header">
+        <h1>AI-Chatbot</h1>
+        <p></p>
+
+        <div class="model-selector">
+          <label for="model">Model:</label>
+          <select id="model"></select>
+        </div>
+      </div>
+
+      <div id="chat-box" class="chat-box"></div>
+
+      <div class="input-container">
+        <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
